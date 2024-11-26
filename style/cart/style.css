@@ -1,0 +1,786 @@
+:root {
+    --amazon-orange: #FF9900;
+    --amazon-dark: #232F3E;
+    --amazon-light-blue: #37475A;
+    --background-soft-gray: #F3F3F3;
+}
+
+body {
+    background-color: var(--background-soft-gray);
+    font-family: 'Amazon Ember', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar Styles */
+.amazon-navbar {
+    background-color: #212529;
+    color: white;
+    padding: 10px 0;
+}
+
+.navbar-brand {
+    color: white !important;
+    font-weight: bold;
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+}
+
+.nav-icons a {
+    color: #a8a9a9;
+    margin-left: 15px;
+    text-decoration: none;
+    position: relative;
+}
+
+#cart {
+    color: #fff;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--amazon-orange);
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+}
+
+/* Cart Container Styles */
+.cart-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.cart-header {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cart-item img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.item-details {
+    flex-grow: 1;
+}
+
+.item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.quantity-btn {
+    background-color: var(--amazon-orange);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.quantity-btn:hover {
+    background-color: #FF7F00;
+}
+
+.quantity-control span {
+    padding: 0 10px;
+}
+
+.checkout-btn {
+    background-color: var(--amazon-orange);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background-color: #FF7F00;
+    transform: scale(1.02);
+}
+
+/* Footer */
+.amazon-footer {
+    background-color: #232F3E;
+    color: #ffffff;
+    padding: 20px 0;
+}
+
+.footer__icon {
+    color: #ffffff;
+    /* padding-left: 20px; */
+    list-style-type: none;
+    text-decoration: none;
+    padding: 0px 20px;
+
+}
+
+.footer__icon i {
+    font-size: 25px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .item-actions {
+        width: 100%;
+        align-items: center;
+    }
+}
+
+@media (max-width: 991px) {
+    .amazon-navbar {
+        position: relative;
+        z-index: 1050;
+    }
+
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--amazon-dark);
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    .nav-icons {
+        width: 100%;
+    }
+
+    .nav-icons a {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-icons a i {
+        margin-right: 10px;
+    }
+}
+
+/* style the popup  */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.popup-animation {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* payment  Popup styling */
+.payment-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.payment-popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.popup-header h2 {
+    margin: 0;
+    color: #333;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #ff0000;
+}
+
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.payment-method {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-method input {
+    display: none;
+}
+
+.payment-method-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.payment-method-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.payment-method input:checked+.payment-method {
+    border-color: #4CAF50;
+    background-color: #e8f5e9;
+}
+
+.payment-method input:checked+.payment-method .payment-method-icon {
+    color: #4CAF50;
+}
+
+.pay-now-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pay-now-btn:hover {
+    background-color: #45a049;
+}
+
+.pay-now-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Card Payment Popup Styles */
+.card-payment-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.card-payment-popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.card-popup-container {
+    background-color: white;
+    border-radius: 15px;
+    width: 500px;
+    max-width: 90%;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.card-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 15px;
+}
+
+.card-popup-header h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.card-close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.card-close-btn:hover {
+    color: #ff0000;
+}
+
+.card-payment-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+.card-input-wrapper {
+    position: relative;
+}
+
+.card-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.card-input-wrapper input {
+    padding-left: 45px;
+}
+
+.card-details-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.card-details-row .form-group {
+    flex: 1;
+}
+
+.submit-card-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.submit-card-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.submit-card-btn i {
+    margin-left: 10px;
+}
+
+/* QR Payment Popup Styles */
+.qr-payment-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.qr-payment-popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.qr-popup-container {
+    background-color: white;
+    border-radius: 15px;
+    width: 600px;
+    max-width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    animation: slideUp 0.4s ease;
+    overflow: hidden;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.qr-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.qr-popup-header h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.qr-close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #6c757d;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 0;
+    line-height: 1;
+}
+
+.qr-close-btn:hover {
+    color: #dc3545;
+}
+
+.qr-content {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+}
+
+.qr-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.qr-image {
+    max-width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.qr-payment-details {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-instructions {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.qr-instructions h4 {
+    margin-top: 0;
+    color: #333;
+    text-align: center;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.qr-instructions ol {
+    padding-left: 25px;
+    margin: 0;
+}
+
+.qr-instructions ol li {
+    margin-bottom: 10px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.qr-instructions ol li:last-child {
+    margin-bottom: 0;
+}
+
+.qr-submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.qr-submit-btn:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .qr-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .qr-image-container,
+    .qr-payment-details {
+        flex: none;
+    }
+}
+
+/* Thank You Popup Styles */
+.thank-you-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1200;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.thank-you-popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.thank-you-container {
+    background-color: white;
+    border-radius: 15px;
+    width: 400px;
+    max-width: 90%;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    animation: popupSlideUp 0.4s ease;
+}
+
+@keyframes popupSlideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.thank-you-icon {
+    font-size: 80px;
+    color: #4CAF50;
+    margin-bottom: 20px;
+    animation: checkAnimation 0.5s ease;
+}
+
+@keyframes checkAnimation {
+    0% {
+        transform: scale(0);
+    }
+
+    70% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.thank-you-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.thank-you-message {
+    color: #666;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+    .thank-you-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .thank-you-icon {
+        font-size: 60px;
+    }
+
+    .thank-you-title {
+        font-size: 1.5rem;
+    }
+}

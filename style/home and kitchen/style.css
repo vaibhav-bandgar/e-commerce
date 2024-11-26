@@ -1,0 +1,44 @@
+body {
+    background-color: #f4f4f4;
+}
+
+.product-card {
+    transition: transform 0.3s ease;
+}
+
+/* .product-card:hover {
+    transform: scale(1.05);
+} */
+.card-img-top {
+    height: 250px;
+    object-fit: cover;
+}
+
+mark {
+    background-color: #cc0c39;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+span {
+    color: red;
+}
+
+/* Footer */
+.amazon-footer {
+    background-color: #232F3E;
+    color: #ffffff;
+    padding: 20px 0;
+}
+
+.footer__icon {
+    color: #ffffff;
+    list-style-type: none;
+    text-decoration: none;
+    padding: 0px 20px;
+}
+
+.footer__icon i {
+    font-size: 25px;
+}

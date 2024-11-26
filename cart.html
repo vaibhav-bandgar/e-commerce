@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- style file  -->
+    <link rel="stylesheet" href="style/cart/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="amazon-navbar navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="image/logo.png" alt="e shop logo" width="40"  class="me-2">
+                e shop cart
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="nav-icons ms-auto d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                    <a class="nav-link" href="electronics.html">
+                        <i class="fas fa-laptop"></i> Electronics
+                    </a>
+                    <a class="nav-link" href="Fashion.html">
+                        <i class="fas fa-shirt"></i> Fashion
+                    </a>
+                    <a class="nav-link" href="Home & Kitchen.html">
+                        <i class="fas fa-cutlery"></i> Home & Kitchen
+                    </a>
+                    <a class="nav-link" href="Books.html">
+                        <i class="fas fa-book"></i> Book
+                    </a>
+                    <a href="#" class="nav-link position-relative" id="cart">
+                        <i class="fas fa-shopping-cart"></i> Cart
+                        <span class="cart-badge" id="nav-cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Container -->
+    <div class="cart-container">
+        <div class="cart-header">
+            <h1>Shopping Cart</h1>
+            <span id="cart-count">0 items</span>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8" id="cart-items">
+                <!-- Dynamic cart items will be inserted here -->
+            </div>
+            <div class="col-lg-4">
+                <div class="cart-summary">
+                    <h3>Order Summary</h3>
+                    <hr>
+                    <div class="summary-details">
+                        <p>Subtotal: <span id="subtotal">$0.00</span></p>
+                        <p>Tax (8%): <span id="tax">$0.00</span></p>
+                        <hr>
+                        <h4>Total: <span id="total">$0.00</span></h4>
+                    </div>
+                    <button class="checkout-btn mt-3">
+                        Proceed to Checkout
+                        <i class="fas fa-arrow-right ms-2"></i>
+                    </button>
+                    <!-- Add Clear Cart Button -->
+                    <button onclick="cartManager.clearCart()" class="checkout-btn mt-3" style="background-color: red;">
+                        Clear Cart
+                        <i class="fas fa-trash-alt ms-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="amazon-footer">
+        <div class="container text-center">
+            <p>Drop ❤️ on</p>
+            <a href="https://www.linkedin.com/in/vaibhav-bandgar/" class="footer__icon"><i
+                    class="fa-brands fa-linkedin"></i></a>
+            <a href="https://www.instagram.com/my_name_is__vaibhav?igsh=ZDV0dDZscG5ubDQ3" class="footer__icon"><i
+                    class="fa-brands fa-instagram"></i></a>
+            <a href="https://wa.me/+918552063008?text= hii vaibhav" class="footer__icon"><i
+                    class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://github.com/vaibhav-bandgar" class="footer__icon"><i
+                    class="fa-brands fa-github"></i></a><br><br>
+            <hr>
+            <p>&copy; 2024 Vaibhav bandgar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- popup html  -->
+
+    <!-- Animated Popup -->
+    <div id="checkout-popup" class="popup">
+        <div class="popup-content">
+            <div id="popup-animation" class="popup-animation">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <p id="popup-text">Processing your order...</p>
+        </div>
+    </div>
+    <!-- The Main Payment Popup -->
+    <div class="payment-popup" id="paymentPopup">
+        <div class="popup-header">
+            <h2>Select Payment Method</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="payment-methods">
+            <label>
+                <input type="radio" name="paymentMethod" value="Credit Card">
+                <div class="payment-method">
+                    <div class="payment-method-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <span class="payment-method-name">Credit Card</span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" name="paymentMethod" value="UPI">
+                <div class="payment-method">
+                    <div class="payment-method-icon">
+                        <i class="fa-solid fa-qrcode"></i>
+                    </div>
+                    <span class="payment-method-name">UPI</span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" name="paymentMethod" value="Google Pay">
+                <div class="payment-method">
+                    <div class="payment-method-icon">
+                        <i class="fab fa-google"></i>
+                    </div>
+                    <span class="payment-method-name">Google Pay</span>
+                </div>
+            </label>
+            <label>
+                <input type="radio" name="paymentMethod" value="Cash">
+                <div class="payment-method">
+                    <div class="payment-method-icon">
+                        <i class="fas fa-money-check-alt"></i>
+                    </div>
+                    <span class="payment-method-name">Cash on delivery</span>
+                </div>
+            </label>
+        </div>
+        <button class="pay-now-btn">Pay Now</button>
+    </div>
+
+    <!-- card payment popup html  -->
+    <div class="card-payment-popup" id="cardPaymentPopup">
+        <div class="card-popup-container">
+            <div class="card-popup-header">
+                <h2>Enter Credit Card Details</h2>
+                <button class="card-close-btn">&times;</button>
+            </div>
+            <form class="card-payment-form">
+                <div class="form-group">
+                    <label for="cardholderName">Cardholder Name</label>
+                    <input type="text" id="cardholderName" name="cardholderName" placeholder="Vaibhav bandgar" required>
+                </div>
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <div class="card-input-wrapper">
+                        <i class="fas fa-credit-card card-icon"></i>
+                        <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 1234 5678"
+                            maxlength="19" required>
+                    </div>
+                </div>
+                <div class="card-details-row">
+                    <div class="form-group">
+                        <label for="expiryDate">Expiry Date</label>
+                        <input type="month" id="expiryDate" name="expiryDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <div class="card-input-wrapper">
+                            <i class="fas fa-lock card-icon"></i>
+                            <input type="password" id="cvv" name="cvv" placeholder="123" maxlength="3" required>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="submit-card-btn">
+                    Submit Payment
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- qr code payment popup html  -->
+    <div class="qr-payment-popup" id="qrPaymentPopup">
+        <div class="qr-popup-container">
+            <div class="qr-popup-header">
+                <h2>Scan QR Code to Pay</h2>
+            </div>
+            <div class="qr-content">
+                <div class="qr-image-container">
+                    <img src="image/payment qr/patment qr.jpg" alt="Payment QR Code" class="qr-image">
+                </div>
+                <div class="qr-payment-details">
+                    <div class="qr-instructions">
+                        <h4>How to Pay</h4>
+                        <ol>
+                            <li>Open your UPI app</li>
+                            <li>Scan the QR code</li>
+                            <li>Confirm the payment</li>
+                        </ol> <br>
+                        <button type="submit" class="qr-submit-btn">
+                            Confirm Payment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thank You for payment Popup -->
+    <div class="thank-you-popup" id="thankYouPopup">
+        <div class="thank-you-container">
+            <div class="thank-you-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="thank-you-title">Thank You!</h2>
+            <p class="thank-you-message">
+                Your order has been successfully placed.
+            </p>
+        </div>
+    </div>
+
+    <!-- javascript file  -->
+    <script src="js/cart/script.js"></script>
+    <!-- bootstrap js  -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
