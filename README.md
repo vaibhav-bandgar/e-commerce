@@ -3,7 +3,7 @@
 # home page
 <img width="959" alt="home" src="https://github.com/user-attachments/assets/8d67b96d-7bcc-4154-b277-abbf66e81de7">
 
-# Display Product. search product in multipal way
+# Display Product, search product in multipal way
 <img width="959" alt="product" src="https://github.com/user-attachments/assets/6359a0a6-534e-4df4-9c50-e97f92d2c9c3">
 
 # cart page
